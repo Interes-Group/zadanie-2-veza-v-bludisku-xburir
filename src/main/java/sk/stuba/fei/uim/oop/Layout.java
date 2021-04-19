@@ -1,7 +1,5 @@
 package sk.stuba.fei.uim.oop;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class Layout {

@@ -7,13 +7,13 @@ public class Frame extends JFrame {
     GameScreen gs;
     ButtonsScreen buttons;
 
-    public Frame(Layout layout){
+    public Frame(Layout layout,int CELL_SIZE){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,900);
+        setSize(30+CELL_SIZE*layout.getGrid().length,130+CELL_SIZE*layout.getGrid().length);
         setTitle("Richard's maze");
         setLayout(new BorderLayout());
         this.buttons = new ButtonsScreen();
-        this.gs = new GameScreen(layout);
+        this.gs = new GameScreen(layout,CELL_SIZE);
         add("North",buttons);
         add("Center",gs);
         repaint();

@@ -6,10 +6,12 @@ import java.awt.*;
 public class GameScreen extends JPanel {
     private Cell[][] grid;
     private Layout layout;
-    private final int CELL_SIZE = 15;
-    public GameScreen(Layout layout){
+    private final int CELL_SIZE;
+
+    public GameScreen(Layout layout,int CELL_SIZE){
         this.grid = layout.getGrid();
         this.layout = layout;
+        this.CELL_SIZE = CELL_SIZE;
         repaint();
 
     }
