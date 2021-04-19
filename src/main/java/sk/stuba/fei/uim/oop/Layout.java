@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Layout {
     private Cell[][] grid;
+    private Cell endpoint;
 
 
     public Layout(int size){
@@ -26,7 +27,13 @@ public class Layout {
         Random rand = new Random();
         Cell start = grid[0][0];
         randomizedDFS(start,rand);
+      //  this.endpoint = getCell(rand.nextInt(grid.length/2 )+ grid.length/2,rand.nextInt(grid.length/2 )+ grid.length/2);
+        this.endpoint = getCell(grid.length-1, grid.length-1);
 
+    }
+
+    public Cell getEndpoint(){
+        return endpoint;
     }
 
 

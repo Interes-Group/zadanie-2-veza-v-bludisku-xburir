@@ -22,6 +22,11 @@ public class GameScreen extends JPanel {
     public void paint(Graphics g){
         g.setColor(Color.WHITE);
         g.fillRect(5,20,layout.getGrid().length* CELL_SIZE,layout.getGrid().length* CELL_SIZE);
+
+        g.setColor(Color.RED);
+        g.fillOval(5 + layout.getEndpoint().getX()*  CELL_SIZE, 20+layout.getEndpoint().getY()*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+
+
         g.setColor(Color.BLACK);
 
         for (int r = 0;r < layout.getGrid().length;r++){
@@ -57,4 +62,5 @@ public class GameScreen extends JPanel {
         this.layout = new Layout(SIZE);
         repaint();
     }
+
 }

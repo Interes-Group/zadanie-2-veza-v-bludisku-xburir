@@ -6,6 +6,7 @@ import java.awt.*;
 public class Frame extends JFrame {
     private GameScreen gs;
     private ButtonsScreen buttons;
+    private JLabel timesWon;
     private final int SIZE;
     private final int CELL_SIZE;
 
@@ -20,6 +21,8 @@ public class Frame extends JFrame {
         this.gs = new GameScreen(SIZE,CELL_SIZE,player);
         this.buttons = new ButtonsScreen(player,gs,this);
         this.addKeyListener(new KeyReact(player,gs,this));
+        this.timesWon = new JLabel("You won "+ player.getTimesWon()+" times");
+        add("South",timesWon);
         add("North",buttons);
         add("Center",gs);
 
@@ -28,6 +31,15 @@ public class Frame extends JFrame {
 
     }
 
+    public JLabel getTimesWon(){
+        return timesWon;
+    }
 
+    public void won(Player player){
+        player.resetCoords();
+        player.setTimesWon(player.getTimesWon()+1);
+        timesWon.setText("You won "+player.getTimesWon()+" times");
+        gs.change();
+    }
 
 }

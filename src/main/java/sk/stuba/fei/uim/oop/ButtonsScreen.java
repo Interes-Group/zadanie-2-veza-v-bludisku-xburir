@@ -8,15 +8,14 @@ public class ButtonsScreen extends JPanel implements ActionListener {
     private Player player;
     private GameScreen gs;
     private Frame fr;
-    private int timesWon;
 
     public ButtonsScreen(Player player,GameScreen gs, Frame fr){
-        this.timesWon = 0;
+
         this.player = player;
         this.fr = fr;
         this.gs = gs;
         setLayout(new GridLayout(2,3));
-        add(new JLabel("Counter"+timesWon));
+        add(new JLabel());
 
         JButton up = new JButton("Up");
         JButton right = new JButton("Right");
@@ -46,9 +45,10 @@ public class ButtonsScreen extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("RESET")){
-           player.move(-player.getX(),-player.getY());
-            gs.change();
-            timesWon = 0;
+           player.resetCoords();
+           player.setTimesWon(0);
+           gs.change();
+           fr.getTimesWon().setText("You won 0 times");
         }
         player.moveByWalls(gs,e.getActionCommand(),fr);
 

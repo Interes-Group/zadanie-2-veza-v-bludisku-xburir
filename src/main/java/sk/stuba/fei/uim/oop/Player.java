@@ -3,10 +3,24 @@ package sk.stuba.fei.uim.oop;
 public class Player {
     private int x;
     private int y;
+    private int timesWon;
 
     public Player(){
+        resetCoords();
+    }
+
+
+    public void setTimesWon(int number){
+        this.timesWon = number;
+    }
+
+    public void resetCoords(){
         this.x = 0;
         this.y = 0;
+    }
+
+    public int getTimesWon(){
+        return timesWon;
     }
 
     public int getY(){
@@ -16,6 +30,7 @@ public class Player {
     public int getX() {
         return x;
     }
+
 
     public void move(int x, int y){
         this.x = this.x + x;
@@ -46,6 +61,13 @@ public class Player {
             if(!gs.getLay().getCell(getY(), getX()).getWalls().getWall("top")){
                 move(0,-1);
             }
+
+        }
+
+        if(getX() == gs.getLay().getEndpoint().getX() && getY() == gs.getLay().getEndpoint().getY()){
+            fr.won(this);
+
+
 
         }
 
