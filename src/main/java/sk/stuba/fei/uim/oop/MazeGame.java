@@ -4,11 +4,11 @@ public class MazeGame {
     private final int SIZE = 15;
     private final int CELL_SIZE = 30;
     private Frame window;
-    private Layout layout;
+    private Player player;
 
     public MazeGame(){
-        this.layout = new Layout(SIZE);
-        this.window = new Frame(layout,CELL_SIZE);
+        this.player = new Player();
+        this.window = new Frame(SIZE,CELL_SIZE,player);
 
 
     }

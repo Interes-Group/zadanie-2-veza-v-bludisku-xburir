@@ -11,6 +11,7 @@ public class Layout {
         createLayout(size);
         setNeighbors();
         generate();
+
     }
 
     private void createLayout(int size){
@@ -30,31 +31,21 @@ public class Layout {
 
 
     private Cell getRandomUnvisitedNeighbor(Cell current,Random rand){
-
         int size = current.getNeighbours().size();
-
         if(size<1){
             return null;
         }
-
         int number = rand.nextInt(size);
         Cell chosenNeighbor = current.getNeighbours().get(number);
-
-
         while(chosenNeighbor.isVisited()){
-
             current.getNeighbours().remove(chosenNeighbor);
             size = current.getNeighbours().size();
-
             if(size<1){
                 return null;
             }
-
             number = rand.nextInt(size);
             chosenNeighbor = current.getNeighbours().get(number);
-
         }
-
         return chosenNeighbor;
     }
 

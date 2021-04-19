@@ -4,25 +4,28 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameScreen extends JPanel {
-    private Cell[][] grid;
     private Layout layout;
     private final int CELL_SIZE;
+    private final int SIZE;
+    private Player player;
 
-    public GameScreen(Layout layout,int CELL_SIZE){
-        this.grid = layout.getGrid();
-        this.layout = layout;
+    public GameScreen(int SIZE,int CELL_SIZE,Player player){
+        this.layout = new Layout(SIZE);
         this.CELL_SIZE = CELL_SIZE;
-        repaint();
+        this.SIZE = SIZE;
+        this.player = player;
+
+
 
     }
 
     public void paint(Graphics g){
         g.setColor(Color.WHITE);
-        g.fillRect(5,20,grid.length* CELL_SIZE,grid.length* CELL_SIZE);
+        g.fillRect(5,20,layout.getGrid().length* CELL_SIZE,layout.getGrid().length* CELL_SIZE);
         g.setColor(Color.BLACK);
 
-        for (int r = 0;r < grid.length;r++){
-            for (int c= 0 ; c< grid[r].length;c++) {
+        for (int r = 0;r < layout.getGrid().length;r++){
+            for (int c= 0 ; c< layout.getGrid().length;c++) {
                 if (layout.getCell(c, r).getWalls().getWall("top")){
                     g.drawLine(r * CELL_SIZE + 5, c * CELL_SIZE + 20, r * CELL_SIZE + 5 + CELL_SIZE, c * CELL_SIZE + 20);   //top line
                 }
@@ -39,6 +42,19 @@ public class GameScreen extends JPanel {
             }
         }
 
+        g.setColor(Color.GREEN);
+        g.fillOval(5 + player.getX()*  CELL_SIZE, 20+player.getY()*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+
+
     }
 
+    public Layout getLay(){
+        return this.layout;
+    }
+
+
+    public void change(){
+        this.layout = new Layout(SIZE);
+        repaint();
+    }
 }
