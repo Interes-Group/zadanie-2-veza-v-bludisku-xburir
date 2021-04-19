@@ -28,39 +28,33 @@ public class Layout {
         Cell start = grid[0][0];
         randomizedDFS(start,rand);
 
-        checks(grid);
-
     }
 
-    private void checks(Cell[][] grid){
-        for (int r = 0;r< grid.length;r++){
-            for (int c = 0; c<grid[r].length;c++){
-                if(grid[r][c].getWalls().getWall("right") == true &&  grid[r][(c+1)%grid.length].getWalls().getWall("left") == false){
-                    System.out.println("prvok "+r+" "+c+" ma pravu a prvok "+ r+" "+c+1+" nema spodnu");
-                }
-                if(grid[r][c].getWalls().getWall("top") == true &&  grid[(r+1)%grid.length][c].getWalls().getWall("bottom") == false){
-                    System.out.println("prvok "+r+" "+c+" ma vrchnu a prvok "+ (r+1) +" "+c+" nema spodnu");
-                }
-            }
-        }
-    }
 
     private Cell getRandomUnvisitedNeighbor(Cell current,Random rand){
+
         int size = current.getNeighbours().size();
+
+        if(size<1){
+            return null;
+        }
+
         int number = rand.nextInt(size);
         Cell chosenNeighbor = current.getNeighbours().get(number);
 
-        ArrayList<Integer> usedInts = new ArrayList<>();
 
         while(chosenNeighbor.isVisited()){
-            number = rand.nextInt(size);
-            chosenNeighbor = current.getNeighbours().get(number);
-            if (!usedInts.contains(number)){
-                usedInts.add(number);
-            }
-            if(usedInts.size()==size){
+
+            current.getNeighbours().remove(chosenNeighbor);
+            size = current.getNeighbours().size();
+
+            if(size<1){
                 return null;
             }
+
+            number = rand.nextInt(size);
+            chosenNeighbor = current.getNeighbours().get(number);
+
         }
 
         return chosenNeighbor;

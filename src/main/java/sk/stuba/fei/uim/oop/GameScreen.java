@@ -22,19 +22,15 @@ public class GameScreen extends JPanel {
         for (int r = 0;r < grid.length;r++){
             for (int c= 0 ; c< grid[r].length;c++) {
                 if (layout.getCell(c, r).getWalls().getWall("top")){
-                    g.setColor(Color.BLUE);
                     g.drawLine(r * CELL_SIZE + 5, c * CELL_SIZE + 20, r * CELL_SIZE + 5 + CELL_SIZE, c * CELL_SIZE + 20);   //top line
                 }
                 if (layout.getCell(c, r).getWalls().getWall("bottom")){
-                    g.setColor(Color.GREEN);
                     g.drawLine(r * CELL_SIZE + 5, c * CELL_SIZE + 20 + CELL_SIZE, r * CELL_SIZE + 5 + CELL_SIZE, c * CELL_SIZE + 20 + CELL_SIZE);   //bottom line
                 }
                 if (layout.getCell(c, r).getWalls().getWall("left")){
-                    g.setColor(Color.YELLOW);
                     g.drawLine(r * CELL_SIZE + 5, c * CELL_SIZE + 20, r * CELL_SIZE + 5, c * CELL_SIZE + 20 + CELL_SIZE);   //left line
                 }
                 if (layout.getCell(c, r).getWalls().getWall("right")){
-                    g.setColor(Color.CYAN);
                     g.drawLine(r * CELL_SIZE + 5 + CELL_SIZE, c * CELL_SIZE + 20, r * CELL_SIZE + 5 + CELL_SIZE, c * CELL_SIZE + 20 + CELL_SIZE);   //right line
                 }
 
