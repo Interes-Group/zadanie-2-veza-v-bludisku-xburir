@@ -3,7 +3,6 @@ package sk.stuba.fei.uim.oop;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.concurrent.TimeUnit;
 
 public class KeyReact extends JPanel implements KeyListener {
     private Player player;
@@ -15,7 +14,6 @@ public class KeyReact extends JPanel implements KeyListener {
         this.gs = gs;
         this.fr = fr;
         addKeyListener(this);
-
     }
 
     @Override
@@ -24,12 +22,6 @@ public class KeyReact extends JPanel implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e){
-
-
-    }
-
-    public void keyReleased(KeyEvent e){
-
         if(e.getKeyCode()== KeyEvent.VK_RIGHT){
             player.moveByWalls(gs,"Right",fr);
         }
@@ -42,6 +34,12 @@ public class KeyReact extends JPanel implements KeyListener {
         if(e.getKeyCode()== KeyEvent.VK_UP){
             player.moveByWalls(gs,"Up",fr);
         }
+
+    }
+
+    public void keyReleased(KeyEvent e){
+
+
 
 
 
