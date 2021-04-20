@@ -8,15 +8,24 @@ public class GameScreen extends JPanel {
     private final int CELL_SIZE;
     private final int SIZE;
     private Player player;
+    private int mouseOnX;
+    private int mouseOnY;
 
     public GameScreen(int SIZE,int CELL_SIZE,Player player){
         this.layout = new Layout(SIZE);
         this.CELL_SIZE = CELL_SIZE;
         this.SIZE = SIZE;
         this.player = player;
+        this.mouseOnX = 0;
+        this.mouseOnY = 0;
+    }
 
+    public void setMouseOnX(int x){
+        this.mouseOnX = x;
+    }
 
-
+    public void setMouseOnY(int y){
+        this.mouseOnY = y;
     }
 
     public void paint(Graphics g){
@@ -26,13 +35,52 @@ public class GameScreen extends JPanel {
 
         if(player.isPathShowed()){
             g.setColor(Color.pink);
-            g.fillRect(5*CELL_SIZE+5,20+5*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+            int py = player.getY(); int px = player.getX();
+            while(!layout.getCell(py,px).getWalls().getWall("right")){
+                px++;
+                g.fillRect(px*CELL_SIZE+5,20+py*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+            }
+            py = player.getY(); px = player.getX();
+            while(!layout.getCell(py,px).getWalls().getWall("left")){
+                px--;
+                g.fillRect(px*CELL_SIZE+5,20+py*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+            }
+            py = player.getY(); px = player.getX();
+            while(!layout.getCell(py,px).getWalls().getWall("bottom")){
+                py++;
+                g.fillRect(px*CELL_SIZE+5,20+py*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+            }
+
+            py = player.getY(); px = player.getX();
+            while(!layout.getCell(py,px).getWalls().getWall("top")){
+                py--;
+                g.fillRect(px*CELL_SIZE+5,20+py*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+            }
+
+
         }
 
         g.setColor(Color.RED);
         g.fillOval(5 + layout.getEndpoint().getX()*  CELL_SIZE, 20+layout.getEndpoint().getY()*CELL_SIZE,CELL_SIZE,CELL_SIZE);
 
-
+        if(player.isPathShowed()){
+            if ((player.getY() == mouseOnY && player.getX() != mouseOnX ) || (player.getY() != mouseOnY && player.getX() == mouseOnX )) {
+                int difx = player.getX() - mouseOnX;
+                int dify = player.getY() - mouseOnY;
+                if (difx > 0){
+                    System.out.println("si vlavo od playera");
+                }
+                else if (difx < 0){
+                    System.out.println("si vpravo od playera");
+                }
+                if (dify > 0){
+                    System.out.println("si hore od playera");
+                }
+                else if (dify < 0){
+                    System.out.println("si dole od playera");
+                }
+            }
+        }
 
         g.setColor(Color.BLACK);
 

@@ -24,15 +24,12 @@ public class MouseReact extends JPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         int x = (e.getX()-5)/CELL_SIZE;
         int y = (e.getY()-20)/CELL_SIZE;
-        if (x >= SIZE || y >= SIZE){
-            System.out.println("si mimo");
-        }
-        else{
+        if (x < SIZE || y < SIZE){
             if(x==player.getX() && y == player.getY()){
                 player.showPath(!player.isPathShowed(),fr);
             }
-
         }
+
 
     }
 
