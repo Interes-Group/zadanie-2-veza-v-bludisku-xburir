@@ -4,11 +4,22 @@ public class Player {
     private int x;
     private int y;
     private int timesWon;
+    private boolean pathShowed;
 
     public Player(){
         resetCoords();
+
     }
 
+    public void showPath(Boolean ans,Frame fr){
+        this.pathShowed = ans;
+        fr.repaint();
+
+    }
+
+    public boolean isPathShowed(){
+        return pathShowed;
+    }
 
     public void setTimesWon(int number){
         this.timesWon = number;

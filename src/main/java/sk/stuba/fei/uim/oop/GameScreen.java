@@ -20,11 +20,18 @@ public class GameScreen extends JPanel {
     }
 
     public void paint(Graphics g){
+
         g.setColor(Color.WHITE);
         g.fillRect(5,20,layout.getGrid().length* CELL_SIZE,layout.getGrid().length* CELL_SIZE);
 
+        if(player.isPathShowed()){
+            g.setColor(Color.pink);
+            g.fillRect(5*CELL_SIZE+5,20+5*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+        }
+
         g.setColor(Color.RED);
         g.fillOval(5 + layout.getEndpoint().getX()*  CELL_SIZE, 20+layout.getEndpoint().getY()*CELL_SIZE,CELL_SIZE,CELL_SIZE);
+
 
 
         g.setColor(Color.BLACK);
@@ -51,7 +58,11 @@ public class GameScreen extends JPanel {
         g.fillOval(5 + player.getX()*  CELL_SIZE, 20+player.getY()*CELL_SIZE,CELL_SIZE,CELL_SIZE);
 
 
+
+
     }
+
+
 
     public Layout getLay(){
         return this.layout;

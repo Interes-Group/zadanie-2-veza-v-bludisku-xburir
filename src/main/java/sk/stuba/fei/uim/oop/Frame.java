@@ -21,10 +21,12 @@ public class Frame extends JFrame {
         this.gs = new GameScreen(SIZE,CELL_SIZE,player);
         this.buttons = new ButtonsScreen(player,gs,this);
         this.addKeyListener(new KeyReact(player,gs,this));
+        gs.addMouseListener(new MouseReact(player,gs,this,SIZE,CELL_SIZE));
         this.timesWon = new JLabel("You won "+ player.getTimesWon()+" times");
         add("South",timesWon);
         add("North",buttons);
         add("Center",gs);
+        setResizable(false);
 
         setVisible(true);
 

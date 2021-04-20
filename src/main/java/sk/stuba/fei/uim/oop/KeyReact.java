@@ -13,7 +13,6 @@ public class KeyReact extends JPanel implements KeyListener {
         this.player = player;
         this.gs = gs;
         this.fr = fr;
-        addKeyListener(this);
     }
 
     @Override
