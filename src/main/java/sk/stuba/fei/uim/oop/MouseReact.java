@@ -29,6 +29,45 @@ public class MouseReact extends JPanel implements MouseListener {
                 player.showPath(!player.isPathShowed(),fr);
             }
         }
+        if(player.isPathShowed()){
+            boolean change = false;
+            for(var cell : player.getCellsReachable()){
+                if(cell.getY() == y && cell.getX() == x){
+                    change = true;
+                    break;
+                }
+            }
+            if (change){
+                int difx = x-player.getX();
+                int dify = y-player.getY();
+                if (difx > 0){
+                    for(int i = 0;i<difx;i++){
+                        player.moveByWalls(gs,"Right",fr);
+                    }
+                }
+                if (difx < 0){
+                    difx = difx*(-1);
+                    for(int i = 0;i<difx;i++){
+                        player.moveByWalls(gs,"Left",fr);
+                    }
+                }
+                if (dify > 0){
+                    for(int i = 0;i<dify;i++){
+                        player.moveByWalls(gs,"Down",fr);
+                    }
+                }
+                if (dify < 0){
+                    dify = dify*(-1);
+                    for(int i = 0;i<dify;i++){
+                        player.moveByWalls(gs,"Up",fr);
+                    }
+                }
+            }
+        }
+
+
+
+        fr.repaint();
 
 
     }

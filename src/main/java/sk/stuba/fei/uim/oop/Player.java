@@ -1,21 +1,75 @@
 package sk.stuba.fei.uim.oop;
 
+import java.util.ArrayList;
+
 public class Player {
     private int x;
     private int y;
     private int timesWon;
     private boolean pathShowed;
+    private ArrayList<Cell> cellsReachable;
 
     public Player(){
         resetCoords();
+        this.pathShowed = false;
+        this.cellsReachable = new ArrayList<>();
+
+
 
     }
 
     public void showPath(Boolean ans,Frame fr){
         this.pathShowed = ans;
-        fr.repaint();
+
 
     }
+
+    public boolean isCellReachableByPlayer(int mouseOnX,int mouseOnY){
+
+        for (var cell : cellsReachable){
+            if (cell.getY() == mouseOnY && cell.getX() == mouseOnX){
+                return true;
+            }
+        }
+        return false;
+
+
+    }
+
+    public void setCellsReachable(Layout layout){
+        while(!cellsReachable.isEmpty()){
+            this.cellsReachable.remove(0);
+        }
+        int py = getY(); int px = getX();
+        while(!layout.getCell(py,px).getWalls().getWall("right")){
+            px++;
+            this.cellsReachable.add(layout.getCell(py,px));
+        }
+        py = getY(); px =getX();
+        while(!layout.getCell(py,px).getWalls().getWall("left")){
+            px--;
+            this.cellsReachable.add(layout.getCell(py,px));
+        }
+        py = getY(); px = getX();
+        while(!layout.getCell(py,px).getWalls().getWall("bottom")){
+            py++;
+            this.cellsReachable.add(layout.getCell(py,px));
+        }
+
+        py = getY(); px =getX();
+        while(!layout.getCell(py,px).getWalls().getWall("top")){
+            py--;
+            this.cellsReachable.add(layout.getCell(py,px));
+        }
+    }
+
+    public ArrayList<Cell> getCellsReachable(){
+        return cellsReachable;
+    }
+
+
+
+
 
     public boolean isPathShowed(){
         return pathShowed;
@@ -55,13 +109,11 @@ public class Player {
             if(!gs.getLay().getCell(getY(), getX()).getWalls().getWall("right")){
                 move(1,0);
             }
-
         }
         if(dir.equals("Left")){
             if(!gs.getLay().getCell(getY(), getX()).getWalls().getWall("left")){
                 move(-1,0);
             }
-
         }
         if(dir.equals("Down")){
             if(!gs.getLay().getCell(getY(), getX()).getWalls().getWall("bottom")){
@@ -72,16 +124,12 @@ public class Player {
             if(!gs.getLay().getCell(getY(), getX()).getWalls().getWall("top")){
                 move(0,-1);
             }
-
         }
 
         if(getX() == gs.getLay().getEndpoint().getX() && getY() == gs.getLay().getEndpoint().getY()){
             fr.won(this);
-
-
-
         }
-
+        setCellsReachable(gs.getLay());
         fr.repaint();
 
     }

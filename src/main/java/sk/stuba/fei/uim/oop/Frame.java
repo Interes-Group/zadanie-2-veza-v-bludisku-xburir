@@ -28,7 +28,6 @@ public class Frame extends JFrame {
         add("North",buttons);
         add("Center",gs);
         setResizable(false);
-
         setVisible(true);
 
 
