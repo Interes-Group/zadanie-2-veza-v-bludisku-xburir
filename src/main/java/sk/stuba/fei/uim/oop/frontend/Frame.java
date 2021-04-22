@@ -47,6 +47,7 @@ public class Frame extends JFrame {
 
     public void won(Player player){
         player.resetCoords();
+        player.showPath(false,this);
         player.setTimesWon(player.getTimesWon()+1);
         timesWon.setText("You won "+player.getTimesWon()+" times");
         gs.change();

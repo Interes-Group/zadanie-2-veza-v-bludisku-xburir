@@ -25,6 +25,7 @@ public class GameScreen extends JPanel {
     }
 
     public void setMouseOnX(int x){
+
         this.mouseOnX = x;
     }
 

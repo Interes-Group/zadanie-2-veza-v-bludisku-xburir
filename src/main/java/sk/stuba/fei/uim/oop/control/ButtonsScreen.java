@@ -50,6 +50,7 @@ public class ButtonsScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("RESET")){
            player.resetCoords();
+           player.showPath(false,fr);
            player.setTimesWon(0);
            gs.change();
            fr.getTimesWon().setText("You won 0 times");
