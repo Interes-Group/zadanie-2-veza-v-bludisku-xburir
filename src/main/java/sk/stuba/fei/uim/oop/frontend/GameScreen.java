@@ -1,4 +1,7 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.frontend;
+
+import sk.stuba.fei.uim.oop.maze.Layout;
+import sk.stuba.fei.uim.oop.Player;
 
 import javax.swing.*;
 import java.awt.*;

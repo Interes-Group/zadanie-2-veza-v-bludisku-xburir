@@ -1,4 +1,10 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.frontend;
+
+import sk.stuba.fei.uim.oop.Player;
+import sk.stuba.fei.uim.oop.control.ButtonsScreen;
+import sk.stuba.fei.uim.oop.control.KeyReact;
+import sk.stuba.fei.uim.oop.control.MouseMotionReact;
+import sk.stuba.fei.uim.oop.control.MouseReact;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +17,7 @@ public class Frame extends JFrame {
     private final int CELL_SIZE;
 
 
-    public Frame(int SIZE,int CELL_SIZE,Player player){
+    public Frame(int SIZE, int CELL_SIZE, Player player){
         this.SIZE = SIZE;
         this.CELL_SIZE = CELL_SIZE;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,6 +33,8 @@ public class Frame extends JFrame {
         add("South",timesWon);
         add("North",buttons);
         add("Center",gs);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setResizable(false);
         setVisible(true);
 

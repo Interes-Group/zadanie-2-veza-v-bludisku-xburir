@@ -1,5 +1,10 @@
 package sk.stuba.fei.uim.oop;
 
+import sk.stuba.fei.uim.oop.frontend.Frame;
+import sk.stuba.fei.uim.oop.frontend.GameScreen;
+import sk.stuba.fei.uim.oop.maze.Cell;
+import sk.stuba.fei.uim.oop.maze.Layout;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -18,7 +23,7 @@ public class Player {
 
     }
 
-    public void showPath(Boolean ans,Frame fr){
+    public void showPath(Boolean ans, Frame fr){
         this.pathShowed = ans;
 
 
@@ -102,7 +107,7 @@ public class Player {
         this.y = this.y + y;
     }
 
-    public void moveByWalls(GameScreen gs,String dir,Frame fr){
+    public void moveByWalls(GameScreen gs, String dir, Frame fr){
 
 
         if(dir.equals("Right")){

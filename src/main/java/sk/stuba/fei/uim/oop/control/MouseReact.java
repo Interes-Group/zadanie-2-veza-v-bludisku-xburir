@@ -1,4 +1,8 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.control;
+
+import sk.stuba.fei.uim.oop.frontend.Frame;
+import sk.stuba.fei.uim.oop.frontend.GameScreen;
+import sk.stuba.fei.uim.oop.Player;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
